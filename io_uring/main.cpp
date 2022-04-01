@@ -126,13 +126,13 @@ int main(int argc, char *argv[])
 
 		io_uring_sqe_set_data(sqe, tf);
 
-		assert(io_uring_submit(&ring) == 1);
 	}
 
+	io_uring_submit(&ring);
 	// Get cqe
 	for (int i = 0; i < 1000; ++i)
 	{
-		printf("%d %dns\n", i, get_completion_time(&ring));
+		printf("%d %d ns\n", i, get_completion_time(&ring));
 	}
 	
 	delete buffer;
